@@ -1,0 +1,26 @@
+* {
+	padding: none;
+	margin: auto;
+	scrollbar-color: #1e1e1e #0c090a;
+}
+
+body {
+	color: #ffffff;
+	background-color: #000000;
+}
+
+.container {
+	border-bottom: 1px solid white;
+}
+
+.currentsongimg {
+	object-fit: cover;
+	width: 50px;
+	height: 50px;
+}
+
+.songinqueuecontainer {
+	display: flex;
+}
+
+

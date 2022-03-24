@@ -1,0 +1,59 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
+	<title>home</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+	<div class="container">
+		<h1>Current Song</h1>
+		<img class="currentsongimg" src="{{imgurl}}"></img>
+		<div class="currentsonginfo">
+			<p class="currentsongtitle">{{songtitle}}</p>
+			<p class="currentsongtitle">{{artist}}</p>
+		</div>
+	</div>
+
+	<div class="container">
+		<h1>Song Queue</h1>
+		{% for song in queue %}
+		<div class="songinqueuecontainer">
+			<p class="queuesongname">{{song[0]}}</p>
+			<img class="currentsongimg" src="urlhere"></img>
+			<p class="currentsongtitle">{{song[1]}}</p>
+		</div>
+		{% endfor %}
+	</div>
+
+	<div class="container">
+		<h1>Add Song</h1>
+		<form autocomplete="off" method="POST">
+			<input type="text" name="stit" placeholder="Song Title"></input>
+			<input type="text" name="sart" placeholder="Song Artist"></input>
+			<input type="submit" name="sbmt" value="Submit"></input>
+		</form>
+	</div>
+
+	<div class="container">
+		<h1>Search Song</h1>
+		<form autocomplete="off" method="POST">
+			<input type="text" name="srch" placeholder="Enter Words Here"></input>
+			<input type="submit" name="srsb" value="Search"></input>
+		</form>
+	</div>
+
+	<!-- prevents form resubmition on page reload -->
+	<script>
+		if (window.history.replaceState)
+		{
+			window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
+
+</body>
+
+</html>

@@ -2,21 +2,37 @@ from flask import Flask, redirect, render_template, request, session, flash, url
 from datetime import timedelta
 import sqlite3 as sql
 import requests
+from bs4 import BeautifulSoup as bs
 
 con = sql.connect('test_database.db')
 con.execute('CREATE TABLE IF NOT EXISTS tbl (ID INTEGER PRIMARY KEY AUTOINCREMENT, songtitle TEXT, songartist TEXT)')
 con.close
 app = Flask(__name__)
 
-# return a list containing dicts of info about the song #
 def scrape_for_songs(content):
-    # in reference from "pure-u-md-1-4" appearing...
-    # song link is 2 down  
-    # song thumbnail is 4 down
-    # song duration is 5 down
-    # song title is 7 down
-    # song artist is 11 down
-    return None
+    songs = []
+    lines = content.splitlines()
+    for i, line in enumerate(lines):
+        info = {}
+        if line.__contains__('pure-u-md-1-4'):
+            # gross but works due to some results being weird (not having some atributsesseses)#
+            try:
+                soup = bs(lines[i+7])
+                info['Title'] = soup.p.string 
+                soup = bs(lines[i+2])
+                xtra = soup.find(href=True) 
+                info['Link'] = xtra['href']
+                soup = bs(lines[i+5])
+                info['Duration'] = soup.p.string
+                soup = bs(lines[i+4])
+                xtra = soup.find('img')
+                info['Thumbnail'] = f"https://invidious.kavin.rocks{xtra['src']}"
+                soup = bs(lines[i+11])
+                info['Artist'] = soup.p.string
+                songs.append(info)
+            except:
+                pass
+    return songs 
 
 def search_songs(t):
     searchterm = t.replace(' ', '+')

@@ -13,12 +13,9 @@
 		<h1>Search Results</h1>
 		{% for song in results %}
 		<div class="songinqueuecontainer">
-			<!--
-			<p class="queuesongname">{{song[0]}}</p>
-			<img class="currentsongimg" src="urlhere"></img>
-			<p class="currentsongtitle">{{song[1]}}</p>
-			-->
-			<p>reults</p>
+			<p class="queuesongname">{{song['Title']}}</p>
+			<img class="currentsongimg" src="{{song['Thumbnail']}}"></img>
+			<p class="currentsongtitle">{{song['Artist']}}</p>
 		</div>
 		{% endfor %}
 	</div>

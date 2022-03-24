@@ -23,19 +23,10 @@
 		{% for song in queue %}
 		<div class="songinqueuecontainer">
 			<p class="queuesongname">{{song[0]}}</p>
-			<img class="currentsongimg" src="urlhere"></img>
+			<img class="currentsongimg" src={{song[2]}}></img>
 			<p class="currentsongtitle">{{song[1]}}</p>
 		</div>
 		{% endfor %}
-	</div>
-
-	<div class="container">
-		<h1>Add Song</h1>
-		<form autocomplete="off" method="POST">
-			<input type="text" name="stit" placeholder="Song Title"></input>
-			<input type="text" name="sart" placeholder="Song Artist"></input>
-			<input type="submit" name="sbmt" value="Submit"></input>
-		</form>
 	</div>
 
 	<div class="container">

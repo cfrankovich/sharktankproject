@@ -1,0 +1,15 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
+	<title>site error</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+</head>
+
+<body>
+	<h1 style="color: red">Request Error! Please check the console for more information.</h1>
+	<h2 style="color: red">Error requesting: {{ requested }}</h2>
+</body>
+

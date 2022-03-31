@@ -34,7 +34,11 @@ def search_songs(t):
         print('Youtube API Key was not able to be read from the file "YTAPIKEY.txt"')
         return None
     requesturl = f'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q={searchterm}&type=video&key={ytapikey}'
-    request = requests.get(requesturl)
+    try:
+        request = requests.get(requesturl)
+    except:
+        print('Error with request')
+        return None
     if int(request.status_code / 100) != 2:
         print(f'Request returned with status code {request.status_code}!')
         return None
@@ -44,7 +48,7 @@ def search_songs(t):
 def results(term):
     searchresults = search_songs(term)
     if searchresults == None:
-        return render_template('error.html', requested=f'https://invidious.kavin.rocks/search?q={term}+content_type%3Avideo')
+        return render_template('error.html') 
     if request.method == 'POST':
         # shut up it works #
         k = -1 

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
-	<title>home</title>
+	<title>admin</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
 </head>
 
@@ -15,7 +15,6 @@
 		hi
 		</p>
 	</div>
-
 	<div class="container">
 		<h1>Current Song</h1>
 		<img id="currentimg" class="currentsongimg" src=""></img>
@@ -25,18 +24,13 @@
 		</div>
 	</div>
 
-
 	<h1>Song Queue</h1>
 	<div class="container" id="placehere">
 	</div>
 
-	<div class="container">
-		<h1>Search Song</h1>
-		<form autocomplete="off" method="POST">
-			<input type="text" name="srch" placeholder="Enter Words Here"></input>
-			<input type="submit" name="srsb" value="Search"></input>
-		</form>
-	</div>
+	<!-- Should auto update -->
+	<iframe id="iframethingymabob" width="300" height="300" src="">
+	</iframe>
 
 	<!-- prevents form resubmition on page reload -->
 	<script>
@@ -64,11 +58,12 @@
 			var jsondata = JSON.parse(data.substring(1));
 			console.log(jsondata)
 
-			if (document.getElementById('currenttitle').src != jsondata[0]["link"])
+			if (document.getElementById('iframethingymabob').src != jsondata[0]["link"])
 			{
 				document.getElementById('currentimg').src = jsondata[0]["img"]
 				document.getElementById('currenttitle').innerHTML = jsondata[0]["title"]
 				document.getElementById('currentartist').innerHTML = jsondata[0]["artist"]
+				document.getElementById('iframethingymabob').src = jsondata[0]["link"]
 			}
 
 			for (let i = 1; i <= items; i++)

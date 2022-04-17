@@ -105,40 +105,58 @@ def search_songs(t):
         return None
     return scrape_for_songs(request.text, ytapikey) 
 
-@app.route('/searchresults/<term>', methods=['POST', 'GET'])
-def results(term):
-    searchresults = search_songs(term)
-    if searchresults == None:
-        return render_template('error.html') 
-    if request.method == 'POST':
-        bidamount = int(request.form['bidamt']) 
-        print(f'Bidded: ${bidamount}')
-        # shut up it works #
-        k = -1 
-        print(len(searchresults))
-        for i in range(len(searchresults)):
-            try:
-               test = request.form[f'adsn{i}']
-               k = i
-            except:
-                pass
-        newsongtitle = searchresults[k]['Title'] 
-        newsongartist = searchresults[k]['Artist'] 
-        newthumbnail = searchresults[k]['Thumbnail']
-        newlink = searchresults[k]['Link']
-        newsongdur = searchresults[k]['Duration']
-        con = sql.connect('test_database.db')
-        con.execute('INSERT INTO tbl (songtitle, songartist, thumbnail, songlink, songduration) VALUES (?,?,?,?,?)', (newsongtitle, newsongartist, newthumbnail, newlink, newsongdur)) 
-        con.commit()
-        con.close()
-        return redirect(url_for('home'))
-    return render_template('searchresults.html', results=searchresults, numresults=len(searchresults))
+@app.route('/search/<bidamt>', methods=['POST', 'GET'])
+def search(bidamt):
+	if request.method == 'POST':
+		searchterm = request.form['src'] 	
+		results = search_songs(searchterm)
+		return redirect(url_for('results', searchterm=searchterm, bidamt=bidamt))
+	return render_template('search.html')
+
+@app.route('/results/<searchterm><bidamt>', methods=['POST', 'GET'])
+def results(searchterm, bidamt):
+	searchresults = search_songs(searchterm)
+	if request.method == 'POST':
+		# shut up it works #
+		k = -1
+		for i in range(5):
+			try:
+				test = request.form[f'fuck{i}']
+				k = i
+			except:
+				pass
+		newsongtitle = searchresults[k]['Title'] 
+		newsongartist = searchresults[k]['Artist'] 
+		newthumbnail = searchresults[k]['Thumbnail']
+		newlink = searchresults[k]['Link']
+		newsongdur = searchresults[k]['Duration']
+		con = sql.connect('test_database.db')
+		con.execute('INSERT INTO tbl (songtitle, songartist, thumbnail, songlink, songduration) VALUES (?,?,?,?,?)', (newsongtitle, newsongartist, newthumbnail, newlink, newsongdur)) 
+		con.commit()
+		con.close()
+		return redirect(url_for('home'))
+	return render_template('results.html', results=searchresults, numresults=5)
+
+
+@app.route('/bid/', methods=['POST', 'GET'])
+def bid():
+	if request.method == 'POST':
+		bidamt = int(request.form['bidamt'])
+		print(bidamt)
+		return redirect(url_for('search', bidamt=bidamt))
+	return render_template('bid.html')
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-    if request.method == 'POST':
-            return redirect(url_for('results', term=request.form['srch']))
-    return render_template('home.html')
+	if request.method == 'POST':
+		try:
+			hi = request.form['que']
+			return redirect(url_for('bid')) 
+		except:
+			#return redirect(url_for('admin'))
+			pass
+	#return redirect(url_for('results', term=request.form['srch']))
+	return render_template('home.html')
 
 @app.route('/add/', methods=['POST', 'GET'])
 def add():

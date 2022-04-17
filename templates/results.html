@@ -4,26 +4,30 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
-	<title>results</title>
+	<title>home</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wave.css') }}"/>
 </head>
 
 <body>
-	<div class="container">
-		<form autocomplete="off" method="POST">
-		<h1>Search Results</h1>
-		<h2>Bid Here</h2>
-		<input type="text" name="bidamt" placeholder="bid amount"></input>
-		{% for i in range(numresults) %}
-		<div class="songinqueuecontainer">
+	<!--
+	<img class="trianglething" src="{{ url_for('static', filename='imgs/trianglething.png') }}"</img>
+	<img class="logo" src="{{ url_for('static', filename='imgs/logo.png') }}"</img>
+	-->
+	
+	<h2>Results</h2>
+	<form autocomplete="off" method="POST">
+		{% for i in range(5) %}
+		<div class="songinqueuecontainer coolhoverthingy">
+			<img class="queuesongimg" src="{{results[i]['Thumbnail']}}"></img>
+			<div class="queueinfo">
 			<p class="queuesongname">{{results[i]['Title']}}</p>
-			<img class="currentsongimg" src="{{results[i]['Thumbnail']}}"></img>
 			<p class="currentsongtitle">{{results[i]['Artist']}}</p>
-				<input type="submit" name="adsn{{i}}" value="Add Song"></input>
+			<input class="addbtn" type="submit" name="fuck{{i}}" value="Add Song"></input>
+			</div>
 		</div>
 		{% endfor %}
-		</form>
-	</div>
+	</form>
 
 	<!-- prevents form resubmition on page reload -->
 	<script>
@@ -34,5 +38,4 @@
 	</script>
 
 </body>
-
 </html>

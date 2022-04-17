@@ -1,0 +1,38 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
+	<title>home</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wave.css') }}"/>
+</head>
+
+<body>
+	<!--
+	<img class="trianglething" src="{{ url_for('static', filename='imgs/trianglething.png') }}"</img>
+	<img class="logo" src="{{ url_for('static', filename='imgs/logo.png') }}"</img>
+	-->
+	<form class="searcharea" autocomplete="off" method="POST">
+		<input id="searchbox" type="text" name="src" placeholder="Search for songs here"></input>
+		<input id="searchboxsubmit" type="submit" name="srcsbt" value="Search"></input>
+	</form>
+
+	<div class="waveWrapper waveAnimation">
+		<div class="waveWrapperInner bgBottom">
+			<div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+		</div>
+	</div>
+
+	<!-- prevents form resubmition on page reload -->
+	<script>
+		if (window.history.replaceState)
+		{
+			window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
+
+</body>
+
+</html>

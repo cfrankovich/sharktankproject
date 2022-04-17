@@ -6,31 +6,38 @@
 	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
 	<title>admin</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wave.css') }}"/>
 </head>
 
 <body>
-	<div class="container">
-		<h1>Site Name (Demo)</h1>
-		<p>
-		hi
-		</p>
-	</div>
-	<div class="container">
-		<h1>Current Song</h1>
-		<img id="currentimg" class="currentsongimg" src=""></img>
+	<!--
+	<img class="trianglething" src="{{ url_for('static', filename='imgs/trianglething.png') }}"</img>
+	<img class="logo" src="{{ url_for('static', filename='imgs/logo.png') }}"</img>
+	-->
+	<form autocomplete="off" method="POST">
+		<input id="queuebtn" type="submit" name="que" value="Queue Song"></input>
+		<input id="adminbtn" type="submit" name="adm" value="Admin Panel"></input>
+	</form>
+
+	<div class="container current">
+		<iframe class="currentsongimg" id="iframethingymabob" src=""></iframe>
 		<div class="currentsonginfo">
-			<p class="currentsongtitle" id="currenttitle"></p>
-			<p class="currentsongtitle" id="currentartist"></p>
+			<p class="currentsongtitle" id="currenttitle">some song name</p>
+			<p class="currentsongtitle" id="currentartist">some artist</p>
+			<img id="audiospectrum" src="{{ url_for('static', filename='imgs/mspectrum2.gif') }}"/>
 		</div>
 	</div>
 
-	<h1>Song Queue</h1>
+
+	<!--<h2 class="nextinqueue" style="padding-top: 5px">Up Next</h2>-->
 	<div class="container" id="placehere">
 	</div>
 
-	<!-- Should auto update -->
-	<iframe id="iframethingymabob" width="300" height="300" src="">
-	</iframe>
+	<div class="waveWrapper waveAnimation">
+		<div class="waveWrapperInner bgBottom">
+			<div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+		</div>
+	</div>
 
 	<!-- prevents form resubmition on page reload -->
 	<script>
@@ -40,7 +47,6 @@
 		}
 	</script>
 
-	<!-- auto update the songs live -->
 	<script>
 		var latest = document.getElementById('latest_value');
 		var xhr = new XMLHttpRequest();
@@ -60,7 +66,6 @@
 
 			if (document.getElementById('iframethingymabob').src != jsondata[0]["link"])
 			{
-				document.getElementById('currentimg').src = jsondata[0]["img"]
 				document.getElementById('currenttitle').innerHTML = jsondata[0]["title"]
 				document.getElementById('currentartist').innerHTML = jsondata[0]["artist"]
 				document.getElementById('iframethingymabob').src = jsondata[0]["link"]

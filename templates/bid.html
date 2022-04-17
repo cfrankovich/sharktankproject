@@ -1,0 +1,88 @@
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
+	<title>home</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wave.css') }}"/>
+</head>
+
+<body>
+	<!--
+	<img class="trianglething" src="{{ url_for('static', filename='imgs/trianglething.png') }}"</img>
+	<img class="logo" src="{{ url_for('static', filename='imgs/logo.png') }}"</img>
+	-->
+	<form autocomplete="off" method="POST">
+		<div class="dollaramt">
+			<span style="font-size: 40px; color: #fff">$</span><input id="bidamount" type="text" name="bidamt" value="0"></input> 
+			<input class="keypadbtn" style="font-size: 20px" type="submit" name="srsb" value="Submit"></input>
+		</div>
+	</form>
+
+	<div class="keypad">
+		<div class="row">
+			<button class="keypadbtn" onclick="numberaddon(1)">1</button>	
+			<button class="keypadbtn" onclick="numberaddon(2)">2</button>	
+			<button class="keypadbtn" onclick="numberaddon(3)">3</button>	
+		</div>
+		<div class="row">
+			<button class="keypadbtn" onclick="numberaddon(4)">4</button>	
+			<button class="keypadbtn" onclick="numberaddon(5)">5</button>	
+			<button class="keypadbtn" onclick="numberaddon(6)">6</button>	
+		</div>
+		<div class="row">
+			<button class="keypadbtn" onclick="numberaddon(7)">7</button>	
+			<button class="keypadbtn" onclick="numberaddon(8)">8</button>	
+			<button class="keypadbtn" onclick="numberaddon(9)">9</button>	
+		</div>
+		<div class="row">
+			<button class="keypadbtn" onclick="numberaddon(0)">0</button>	
+			<button class="keypadbtn" onclick="del()">del</button>	
+		</div>
+	</div>
+
+	<div class="waveWrapper waveAnimation">
+		<div class="waveWrapperInner bgBottom">
+			<div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+		</div>
+	</div>
+
+
+	<script>
+		function numberaddon(val)
+		{
+			let p = document.getElementById('bidamount')
+			let initvalue = Number(p.value) * 10
+			initvalue += Number(val)
+			p.value = initvalue
+		}
+
+		function del()
+		{
+			let p = document.getElementById('bidamount')
+			let initvalue = Math.floor(Number(p.value) / 10)
+			p.value = initvalue
+		}
+	</script>
+
+	<!--
+	<div class="waveWrapper waveAnimation">
+		<div class="waveWrapperInner bgBottom">
+			<div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+		</div>
+	</div>
+	-->
+
+	<!-- prevents form resubmition on page reload -->
+	<script>
+		if (window.history.replaceState)
+		{
+			window.history.replaceState(null, null, window.location.href);
+		}
+	</script>
+
+</body>
+
+</html>

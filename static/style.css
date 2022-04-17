@@ -1,25 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
 * {
 	padding: none;
-	margin: auto;
+	margin: 0;
 	scrollbar-color: #1e1e1e #0c090a;
+	font-family: 'Ubuntu', sans-serif;	
 }
 
 body {
-	color: #ffffff;
-	background-color: #000000;
+	color: #A79887;
+	background-color: #070706;
 }
 
 .container {
 }
 
+#audiospectrum {
+	width: 500px;
+	min-width: 400px; 
+	padding-top: 10px;
+}
+
+.current {
+	display: flex;
+	padding: 20px;
+	background-color: #090908;
+	border-bottom: 1px solid #a79887;
+}
+
+.currentsonginfo {
+	padding-left: 2em;
+}
+
+#currenttitle {
+	font-size: 40px;
+}
+
+#currentartist {
+	font-size: 30px;
+}
+
 .currentsongimg {
 	object-fit: cover;
-	width: 50px;
-	height: 50px;
+	width: 250px;
+	height: 250px;
 }
 
 .songinqueuecontainer {
 	display: flex;
+	padding: 20px;
+	vertical-align: middle;
 }
 
+.queuesongname {
+	font-size: 20px;
+	color: #fff;
+}
 
+.queuesongimg {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+}
+
+.queueinfo {
+	padding-left: 2em
+}
+
+.nextinqueue {
+	padding-left: 20px;
+	font-size: 25px;
+}
+
+.trianglething {
+	position: absolute;
+	top: 0;
+	right: 0;	
+	width: 100px;
+	height: 100px;
+	float: right;
+}
+
+.logo {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 70px;
+	height: 70px;
+	float: right;
+}
+
+#queuebtn {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 140px;
+	height: 50px;
+	float: right;
+	font-size: 20px;
+	z-index: 10;
+	transition: 0.5s;
+	color: #A79887;
+	background-color: #070706;
+	border: 2px solid #000;
+}
+
+#queuebtn:hover {
+	color: #fff;
+}
+
+#adminbtn {
+	position: absolute;
+	top: 70px;
+	right: 10px;
+	width: 140px;
+	height: 50px;
+	float: right;
+	font-size: 20px;
+	z-index: 10;
+	transition: 0.5s;
+	color: #A79887;
+	background-color: #070706;
+	border: 2px solid #000;
+}
+
+#adminbtn:hover {
+	color: #fff;
+}
+
+.dollaramt {
+	text-align: center;
+	margin-top: 5px;
+}
+
+#bidamount {
+	width: 150px;
+	font-size: 40px;
+	color: #fff;
+	background-color: #070706;
+	border: none; 
+}
+
+.keypadbtn {
+	width: 100px;
+	height: 100px;
+	font-size: 40px;
+	z-index: 10;
+	transition: 0.5s;
+	color: #fff;
+	background-color: #070706;
+	border: 0px solid #000;
+	margin-top: 5px;
+}
+
+.keypadbtn:hover {
+	color: #A79887;
+}
+
+.keypad {
+	text-align: center;
+}
+
+#searchbox {
+	width: 700px;
+	height: 50px;
+	font-size: 20px;
+	z-index: 10;
+	transition: 0.5s;
+	color: #fff;
+	background-color: #000000;
+	border: 2px solid #101010;
+	margin-top: 5px;
+}
+
+#searchboxsubmit {
+	width: 100px;
+	height: 50px;
+	font-size: 20px;
+	z-index: 10;
+	transition: 0.5s;
+	color: #fff;
+	background-color: #000000;
+	border: 2px solid #101010;
+	margin-top: 5px;
+
+}
+
+.searcharea {
+	padding: 5px;
+	text-align: center;
+}
+
+.coolhoverthingy {
+	transition: 1s;
+}
+
+.coolhoverthingy:hover {
+
+}
+
+.addbtn {
+	width: 80px;
+	height: 25px;
+	font-size: 15px;
+	z-index: 10;
+	transition: 0.5s;
+	color: #fff;
+	background-color: #000000;
+	margin-top: 5px;
+	border: none
+}

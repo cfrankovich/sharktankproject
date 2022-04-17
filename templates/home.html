@@ -6,36 +6,37 @@
 	<meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1">
 	<title>home</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}"/>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='wave.css') }}"/>
 </head>
 
 <body>
-	<div class="container">
-		<h1>Site Name (Demo)</h1>
-		<p>
-		hi
-		</p>
-	</div>
+	<!--
+	<img class="trianglething" src="{{ url_for('static', filename='imgs/trianglething.png') }}"</img>
+	<img class="logo" src="{{ url_for('static', filename='imgs/logo.png') }}"</img>
+	-->
+	<form autocomplete="off" method="POST">
+		<input id="queuebtn" type="submit" name="que" value="Queue Song"></input>
+		<input id="adminbtn" type="submit" name="adm" value="Admin Panel"></input>
+	</form>
 
-	<div class="container">
-		<h1>Current Song</h1>
+	<div class="container current">
 		<img id="currentimg" class="currentsongimg" src=""></img>
 		<div class="currentsonginfo">
-			<p class="currentsongtitle" id="currenttitle"></p>
-			<p class="currentsongtitle" id="currentartist"></p>
+			<p class="currentsongtitle" id="currenttitle">some song name</p>
+			<p class="currentsongtitle" id="currentartist">some artist</p>
+			<img id="audiospectrum" src="{{ url_for('static', filename='imgs/mspectrum2.gif') }}"/>
 		</div>
 	</div>
 
 
-	<h1>Song Queue</h1>
+	<!--<h2 class="nextinqueue" style="padding-top: 5px">Up Next</h2>-->
 	<div class="container" id="placehere">
 	</div>
 
-	<div class="container">
-		<h1>Search Song</h1>
-		<form autocomplete="off" method="POST">
-			<input type="text" name="srch" placeholder="Enter Words Here"></input>
-			<input type="submit" name="srsb" value="Search"></input>
-		</form>
+	<div class="waveWrapper waveAnimation">
+		<div class="waveWrapperInner bgBottom">
+			<div class="wave waveBottom" style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+		</div>
 	</div>
 
 	<!-- prevents form resubmition on page reload -->
@@ -75,9 +76,12 @@
 			{
 				var newDiv = document.createElement("div"); 
 				newDiv.className = "songinqueuecontainer";
-				newDiv.innerHTML = `<p class="queuesongname">${jsondata[i]["title"]}</p>
-				<img class="currentsongimg" src="${jsondata[i]["img"]}"></img>
-				<p class="currentsongtitle">${jsondata[i]["artist"]}</p>`
+				newDiv.innerHTML = `<img class="queuesongimg" src="${jsondata[i]["img"]}"></img>
+				<div class="queueinfo">
+				<p class="queuesongname">${jsondata[i]["title"]}</p>
+				<p class="currentsongtitle">${jsondata[i]["artist"]}</p>
+				<p class="outbidtext">$5 Bid</p>
+				</div>`
 				wtf.appendChild(newDiv);
 			}
 			
